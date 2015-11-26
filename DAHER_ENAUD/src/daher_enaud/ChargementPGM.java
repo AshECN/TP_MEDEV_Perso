@@ -49,12 +49,11 @@ public class ChargementPGM {
         } catch (FileNotFoundException e) {
             System.out.println("Erreur, fichier non trouvé !");
         }
-        StringTokenizer tokenizer = new StringTokenizer(ligne, delimiteurs);
-        
+                
         try {
             ligne = fichier.readLine();
+            StringTokenizer tokenizer = new StringTokenizer(ligne, delimiteurs);
             String mot = tokenizer.nextToken();
-            mot = tokenizer.nextToken();
             
             // Vérification de la conformité du PGM
             if (!mot.equals("P2")){
@@ -63,7 +62,12 @@ public class ChargementPGM {
             
             // Gestion des commentaires
             ligne = fichier.readLine();
-            // Récupérer les commentaires
+            tokenizer = new StringTokenizer(ligne, delimiteurs);
+            mot = tokenizer.nextToken();
+            if (!mot.equals("#")){
+                //TODO Générer une exception
+            }
+            this.myPGM.setCommentaires(ligne);
             
             // Gestion des dimensions
             ligne = fichier.readLine();
@@ -74,13 +78,26 @@ public class ChargementPGM {
             image = new int[largeur][hauteur];
             
             // Gestion de la teinte maxi
+            mot = tokenizer.nextToken();
+            int teinteMaxi = parseInt(mot);
+            this.myPGM.setTeinteMaxi(hauteur);
             
             // Gestion des éléments du tableau
+            ligne = fichier.readLine();
+            
+            for (int i=0;i<hauteur;i++){
+                tokenizer = new StringTokenizer(ligne, delimiteurs);
+                mot = tokenizer.nextToken();
+                int valeur = parseInt(mot); // conversion en entier du mot
+                for (int j=0;j<largeur;j++){
+                    this.myPGM.setImageCoordonnees(j, i, valeur);
+                }
+                ligne = fichier.readLine();
+            }
 
             
             fichier.close();
-
-            // On peut maintenant créer le monde    
+   
         } catch (Exception e) {
             e.printStackTrace();
         }
