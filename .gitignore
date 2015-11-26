@@ -42,3 +42,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /SwitchTest/nbproject/private/
+/SwitchTest/build/
+/MyLib/nbproject/private/
+/MyApp/nbproject/private/
