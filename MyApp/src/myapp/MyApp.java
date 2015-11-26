@@ -5,6 +5,8 @@
  */
 package myapp;
 
+import MyLib.MyLib;
+
 /**
  *
  * @author victo
@@ -15,7 +17,8 @@ public class MyApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        String result = MyLib.acrostic(args);
+        System.out.println("Result  =  " + result);
     }
-    
+
 }

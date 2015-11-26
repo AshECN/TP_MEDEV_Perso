@@ -45,3 +45,6 @@ Temporary Items
 /SwitchTest/build/
 /MyLib/nbproject/private/
 /MyApp/nbproject/private/
+/MyLib/build/
+/MyLib/dist/
+/MyApp/build/
