@@ -10,8 +10,8 @@ package tp_medev_1;
  * @author victo
  */
 public class Point {
-    private int x;
-    private int y;
+    private int abscisse;
+    private int ordonne;
 
     /**
      * 
@@ -19,8 +19,8 @@ public class Point {
      * @param y 
      */
     public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.abscisse = x;
+        this.ordonne = y;
     }
     
     /**
@@ -28,7 +28,7 @@ public class Point {
      * @return 
      */
     public int getX() {
-        return x;
+        return abscisse;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Point {
      * @param x 
      */
     public void setX(int x) {
-        this.x = x;
+        this.abscisse = x;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Point {
      * @return 
      */
     public int getY() {
-        return y;
+        return ordonne;
     }
 
     /**
@@ -52,6 +52,6 @@ public class Point {
      * @param y 
      */
     public void setY(int y) {
-        this.y = y;
+        this.ordonne = y;
     }
 }
