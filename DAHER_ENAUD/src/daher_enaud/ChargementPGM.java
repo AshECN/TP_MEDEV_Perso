@@ -9,6 +9,8 @@ import java.io.*;
 import static java.lang.Integer.parseInt;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Classe permettant de charger une partie à partir d'un fichier de sauvegarde
@@ -18,7 +20,7 @@ import java.util.StringTokenizer;
 public class ChargementPGM {
 
     private String source;
-    private int[][] image;
+    private PGM myPGM;
 
     /**
      * Permet de charger le PGM. Elle va faire appel à une méthode chargement
@@ -30,17 +32,23 @@ public class ChargementPGM {
      */
     public ChargementPGM(String source) {
         this.source = source;
-        this.image = chargement();
+        chargement();
     }
 
-    private int[][] chargement() {
+    private void chargement() {
         int largeur = 0;
         int hauteur = 0;
         int[][] image = new int[0][0]; // initialisation de base pour l'image
+        String commentaires = "#";
 
         String ligne = "";
         String delimiteurs = " ";
-        BufferedReader fichier = new BufferedReader(new FileReader(source));
+        BufferedReader fichier = null;
+        try { // vérifie que le fichier source existe bien
+            fichier = new BufferedReader(new FileReader(source));
+        } catch (FileNotFoundException e) {
+            System.out.println("Erreur, fichier non trouvé !");
+        }
         StringTokenizer tokenizer = new StringTokenizer(ligne, delimiteurs);
         
         try {
@@ -55,7 +63,7 @@ public class ChargementPGM {
             
             // Gestion des commentaires
             ligne = fichier.readLine();
-            // Ignorer les commentaires
+            // Récupérer les commentaires
             
             // Gestion des dimensions
             ligne = fichier.readLine();
@@ -72,12 +80,13 @@ public class ChargementPGM {
             
             fichier.close();
 
-            // On peut maintenant créer le monde
-            
+            // On peut maintenant créer le monde    
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return image;
+        this.myPGM.setImage(image);
+        this.myPGM.setCommentaires(commentaires);
+        
     }
 }
